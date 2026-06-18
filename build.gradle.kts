@@ -36,6 +36,14 @@ dependencies {
     implementation(group = "org.bstats", name = "bstats-bukkit", version = "3.0.2")
 }
 
+configurations.configureEach {
+    // paper-api provides the full org.bukkit API and declares the
+    // 'org.bukkit:bukkit' capability. WorldGuard/WorldEdit pull in the
+    // standalone org.bukkit:bukkit artifact transitively, which conflicts on
+    // that capability; drop it since paper-api already supplies those classes.
+    exclude(group = "org.bukkit", module = "bukkit")
+}
+
 tasks {
     withType<JavaCompile> {
         options.encoding = "UTF-8"
