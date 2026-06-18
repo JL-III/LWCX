@@ -126,6 +126,11 @@ public class EntityBlockState implements BlockState {
     }
 
     @Override
+    public java.util.Collection<org.bukkit.inventory.ItemStack> getDrops(org.bukkit.inventory.ItemStack itemStack, org.bukkit.entity.Entity entity) {
+        return java.util.Collections.emptyList();
+    }
+
+    @Override
     public void setMetadata(String s, MetadataValue metadataValue) {
 
     }

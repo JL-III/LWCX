@@ -301,6 +301,11 @@ public class EntityBlock implements Block {
     }
 
     @Override
+    public org.bukkit.SoundGroup getBlockSoundGroup() {
+        return null;
+    }
+
+    @Override
     public boolean isLiquid() {
         // TODO Auto-generated method stub
         return false;
