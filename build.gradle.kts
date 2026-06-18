@@ -34,6 +34,12 @@ dependencies {
     compileOnly(group = "com.github.MilkBowl", name = "VaultAPI", version = "1.7.1")
     compileOnly(group = "com.google.guava", name = "guava", version = "23.0")
     implementation(group = "org.bstats", name = "bstats-bukkit", version = "3.0.2")
+    // Spigot exposed these on its API, but Paper 26.1+ no longer bundles them,
+    // so ship them inside the plugin jar.
+    implementation(group = "commons-lang", name = "commons-lang", version = "2.6")
+    implementation(group = "com.googlecode.json-simple", name = "json-simple", version = "1.1.1") {
+        exclude(group = "junit", module = "junit")
+    }
 }
 
 configurations.configureEach {

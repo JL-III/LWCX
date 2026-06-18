@@ -296,6 +296,11 @@ public class EntityBlock implements Block {
     }
 
     @Override
+    public boolean isSuffocating() {
+        return false;
+    }
+
+    @Override
     public boolean isLiquid() {
         // TODO Auto-generated method stub
         return false;

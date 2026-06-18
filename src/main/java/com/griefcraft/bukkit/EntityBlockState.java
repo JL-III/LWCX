@@ -121,6 +121,11 @@ public class EntityBlockState implements BlockState {
     }
 
     @Override
+    public boolean isSuffocating() {
+        return false;
+    }
+
+    @Override
     public void setMetadata(String s, MetadataValue metadataValue) {
 
     }

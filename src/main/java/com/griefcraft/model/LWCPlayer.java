@@ -132,6 +132,11 @@ public class LWCPlayer implements CommandSender {
         return player.getName();
     }
 
+    @Override
+    public net.kyori.adventure.text.Component name() {
+        return player.name();
+    }
+
     /**
      * Required by Spigot for plugin compilation.
      *
