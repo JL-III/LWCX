@@ -3,19 +3,19 @@ import java.util.*
 plugins {
     id("java-library")
     id("maven-publish")
-    id("io.github.goooler.shadow") version "8.1.7"
+    id("com.gradleup.shadow") version "9.4.2"
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
     withSourcesJar()
 }
 
 repositories {
     mavenCentral()
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.glaremasters.me/repository/towny/")
     maven("https://ci.ender.zone/plugin/repository/everything/")
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.21.11-R0.2-SNAPSHOT")
+    compileOnly(group = "io.papermc.paper", name = "paper-api", version = "26.1.2.build.+")
     compileOnly(group = "com.sk89q.worldedit", name = "worldedit-core", version = "7.1.0")
     compileOnly(group = "com.sk89q.worldguard", name = "worldguard-bukkit", version = "7.0.0")
     compileOnly(group = "com.palmergames.bukkit.towny", name = "towny", version = "0.98.2.0")
@@ -34,6 +34,20 @@ dependencies {
     compileOnly(group = "com.github.MilkBowl", name = "VaultAPI", version = "1.7.1")
     compileOnly(group = "com.google.guava", name = "guava", version = "23.0")
     implementation(group = "org.bstats", name = "bstats-bukkit", version = "3.0.2")
+    // Spigot exposed these on its API, but Paper 26.1+ no longer bundles them,
+    // so ship them inside the plugin jar.
+    implementation(group = "commons-lang", name = "commons-lang", version = "2.6")
+    implementation(group = "com.googlecode.json-simple", name = "json-simple", version = "1.1.1") {
+        exclude(group = "junit", module = "junit")
+    }
+}
+
+configurations.configureEach {
+    // paper-api provides the full org.bukkit API and declares the
+    // 'org.bukkit:bukkit' capability. WorldGuard/WorldEdit pull in the
+    // standalone org.bukkit:bukkit artifact transitively, which conflicts on
+    // that capability; drop it since paper-api already supplies those classes.
+    exclude(group = "org.bukkit", module = "bukkit")
 }
 
 tasks {

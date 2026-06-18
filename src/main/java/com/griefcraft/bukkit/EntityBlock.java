@@ -296,6 +296,88 @@ public class EntityBlock implements Block {
     }
 
     @Override
+    public boolean isSuffocating() {
+        return false;
+    }
+
+    @Override
+    public org.bukkit.SoundGroup getBlockSoundGroup() {
+        return null;
+    }
+
+    @Override
+    public com.destroystokyo.paper.block.BlockSoundGroup getSoundGroup() {
+        return null;
+    }
+
+    @Override
+    public boolean isValidTool(ItemStack tool) {
+        return false;
+    }
+
+    @Override
+    public BlockState getState(boolean useSnapshot) {
+        return getState();
+    }
+
+    @Override
+    public Biome getComputedBiome() {
+        return getBiome();
+    }
+
+    @Override
+    public boolean isBuildable() {
+        return false;
+    }
+
+    @Override
+    public boolean isBurnable() {
+        return false;
+    }
+
+    @Override
+    public boolean isReplaceable() {
+        return false;
+    }
+
+    @Override
+    public boolean isSolid() {
+        return false;
+    }
+
+    @Override
+    public boolean isCollidable() {
+        return false;
+    }
+
+    @Override
+    public boolean breakNaturally(boolean triggerEffect, boolean dropExperience) {
+        return false;
+    }
+
+    @Override
+    public boolean breakNaturally(ItemStack tool, boolean triggerEffect, boolean dropExperience) {
+        return false;
+    }
+
+    @Override
+    public boolean breakNaturally(ItemStack tool, boolean triggerEffect, boolean dropExperience, boolean forceEffect) {
+        return false;
+    }
+
+    @Override
+    public void tick() {
+    }
+
+    @Override
+    public void fluidTick() {
+    }
+
+    @Override
+    public void randomTick() {
+    }
+
+    @Override
     public boolean isLiquid() {
         // TODO Auto-generated method stub
         return false;
@@ -338,6 +420,11 @@ public class EntityBlock implements Block {
 
     @Override
     public String getTranslationKey() {
+        return null;
+    }
+
+    @Override
+    public String translationKey() {
         return null;
     }
 }

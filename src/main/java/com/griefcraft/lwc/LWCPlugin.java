@@ -30,7 +30,6 @@ package com.griefcraft.lwc;
 
 import com.griefcraft.cache.BlockCache;
 import com.griefcraft.listeners.LWC114Listener;
-import com.griefcraft.listeners.LWC12111Listener;
 import com.griefcraft.listeners.LWCBlockListener;
 import com.griefcraft.listeners.LWCEntityListener;
 import com.griefcraft.listeners.LWCPlayerListener;
@@ -61,17 +60,13 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.MissingResourceException;
 import java.util.PropertyResourceBundle;
 import java.util.ResourceBundle;
-import java.util.Set;
 import java.util.jar.JarFile;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class LWCPlugin extends JavaPlugin {
 
@@ -353,9 +348,7 @@ public class LWCPlugin extends JavaPlugin {
         preload();
 
         // make sure this is a safe version
-        Set<String> unsupportedVersions = new HashSet<>(Arrays.asList("1.8", "1.9", "1.10", "1.11", "1.12"));
-        Matcher matcher = Pattern.compile("\\d[.]\\d+").matcher(Bukkit.getVersion());
-        if (matcher.find() && unsupportedVersions.contains(matcher.group())) {
+        if (!VersionUtil.isAtLeast(1, 13)) {
             this.log("  _       __          __   _____ ");
             this.log(" | |      \\ \\        / /  / ____|");
             this.log(" | |       \\ \\  /\\  / /  | |     ");
@@ -363,7 +356,8 @@ public class LWCPlugin extends JavaPlugin {
             this.log(" | |____     \\  /\\  /    | |____ ");
             this.log(" |______|     \\/  \\/      \\_____|");
             this.log("");
-            this.log("This version of LWCX is not compatible with MineCraft " + matcher.group());
+            this.log("This version of LWCX is not compatible with MineCraft "
+                    + VersionUtil.getMajorVersion() + "." + VersionUtil.getMinorVersion());
             this.log("LWCX 2.0.0 and above can only be used on servers running MineCraft 1.13+");
             this.log("Please download an older version of the plugin at " + this.getDescription().getWebsite());
             this.getServer().getPluginManager().disablePlugin(this);
@@ -520,9 +514,6 @@ public class LWCPlugin extends JavaPlugin {
         pluginManager.registerEvents(new LWCServerListener(this), this);
         if (VersionUtil.isAtLeast(1, 14)) {
             pluginManager.registerEvents(new LWC114Listener(), this);
-        }
-        if (VersionUtil.isAtLeast(1, 21, 11)) {
-            pluginManager.registerEvents(new LWC12111Listener(), this);
         }
         if (Bukkit.getPluginManager().getPlugin("Towny") != null) {
             pluginManager.registerEvents(new Towny(), this);
