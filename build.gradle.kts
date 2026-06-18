@@ -3,19 +3,19 @@ import java.util.*
 plugins {
     id("java-library")
     id("maven-publish")
-    id("io.github.goooler.shadow") version "8.1.7"
+    id("com.gradleup.shadow") version "9.4.2"
 }
 
 java {
     toolchain {
-        languageVersion.set(JavaLanguageVersion.of(21))
+        languageVersion.set(JavaLanguageVersion.of(25))
     }
     withSourcesJar()
 }
 
 repositories {
     mavenCentral()
-    maven("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
+    maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://maven.enginehub.org/repo/")
     maven("https://repo.glaremasters.me/repository/towny/")
     maven("https://ci.ender.zone/plugin/repository/everything/")
@@ -24,7 +24,7 @@ repositories {
 }
 
 dependencies {
-    compileOnly(group = "org.spigotmc", name = "spigot-api", version = "1.21.11-R0.2-SNAPSHOT")
+    compileOnly(group = "io.papermc.paper", name = "paper-api", version = "26.1.2.build.+")
     compileOnly(group = "com.sk89q.worldedit", name = "worldedit-core", version = "7.1.0")
     compileOnly(group = "com.sk89q.worldguard", name = "worldguard-bukkit", version = "7.0.0")
     compileOnly(group = "com.palmergames.bukkit.towny", name = "towny", version = "0.98.2.0")
