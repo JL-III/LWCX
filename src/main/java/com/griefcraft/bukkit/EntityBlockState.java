@@ -131,6 +131,11 @@ public class EntityBlockState implements BlockState {
     }
 
     @Override
+    public boolean isCollidable() {
+        return false;
+    }
+
+    @Override
     public void setMetadata(String s, MetadataValue metadataValue) {
 
     }
