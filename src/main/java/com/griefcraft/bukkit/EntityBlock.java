@@ -422,4 +422,9 @@ public class EntityBlock implements Block {
     public String getTranslationKey() {
         return null;
     }
+
+    @Override
+    public String translationKey() {
+        return null;
+    }
 }
